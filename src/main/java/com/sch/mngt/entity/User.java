@@ -34,16 +34,16 @@ public class User {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "USER_NAME",unique=true,nullable=false)
+	@Column(name = "USER_NAME", unique = true, nullable = false)
 	private String username;
 
-	@Column(name = "PASSWORD",nullable=false)
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@Column(name = "FIRST_NAME",nullable=false)
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 
-	@Column(name = "LAST_NAME",nullable=false)
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
 	@Column(name = "MIDDE_NAME")
@@ -60,10 +60,8 @@ public class User {
 
 	@Column(name = "EMPLOYEE_ID")
 	private String employeeId;
-	
-	
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
-	private Set <UserRole> roles = new HashSet<UserRole>();
-	
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<UserRole> roles = new HashSet<UserRole>();
 
 }

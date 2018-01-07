@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableAutoConfiguration
 @SpringBootApplication
-//@EnableJpaAuditing()
 @EnableJpaRepositories(basePackages = "com.sch.mngt.repository")
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 

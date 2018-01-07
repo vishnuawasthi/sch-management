@@ -18,4 +18,6 @@ public class Request {
 	private LoginDTO loginDTO;
 	
 	
+	
+	
 }
