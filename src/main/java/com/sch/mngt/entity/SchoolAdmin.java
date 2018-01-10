@@ -1,4 +1,4 @@
-package com.sch.mngt.entity;
+/*package com.sch.mngt.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,3 +54,4 @@ public class SchoolAdmin extends AbstractEntity {
 	private School school;
 
 }
+*/

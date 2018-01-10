@@ -1,6 +1,5 @@
 package com.sch.mngt.dto;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.sch.mngt.entity.Class;
@@ -25,6 +24,9 @@ public class FacultyDetailsDTO {
 	private String email;
 
 	private String contactNumer;
+	
+	private Long schoolId;
+	
 	
 	private Set<Class> classes ;
 

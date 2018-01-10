@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.sch.mngt.entity.User;
@@ -50,8 +49,7 @@ public class CustomUserDetailService implements UserDetailsService {
 		Set<UserRole> userRoles = user.getRoles();
 		List<String> roleNames = new ArrayList<String>();
 		for(UserRole role : userRoles){
-			roleNames.add(role.getRoleName());
-			
+			roleNames.add(role.getRoleName().toString());
 		}
 		String authorityString = StringUtils.collectionToCommaDelimitedString(roleNames);
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(authorityString);

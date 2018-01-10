@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -48,8 +50,12 @@ public class Faculty implements Serializable {
 
 	@Column(name = "CONTACT_NUMBER")
 	private String contactNumer;
+	
+	@ManyToOne
+	@JoinColumn(name = "SCHOOL_SEQNUM")
+	private School school;
 
-	@OneToMany(mappedBy = "faculty")
-	private Set<Class> classes = new HashSet<Class>();
+	@ManyToMany(mappedBy = "faculties")
+	private Set<com.sch.mngt.entity.Class> classes = new HashSet<com.sch.mngt.entity.Class>();
 
 }

@@ -30,5 +30,7 @@ public class Response {
 	
 	private SchoolAdminDTO schoolAdminDetail;
 	
+	private ClassDetailsDTO classDetail;
+	
 
 }

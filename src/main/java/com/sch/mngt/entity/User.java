@@ -9,7 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,7 +31,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "USER_DETAILS")
 @SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_USER_DETAILS", initialValue = 1)
-public class User {
+public class User extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(generator = "SEQ_USER_DETAILS", strategy = GenerationType.SEQUENCE)
@@ -58,10 +62,15 @@ public class User {
 	@Column(name = "SCHOOL_NUMBER")
 	private String schoolRegNumber;
 
-	@Column(name = "EMPLOYEE_ID")
-	private String employeeId;
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserRole> roles = new HashSet<UserRole>();
+
+	@ManyToOne
+	@JoinColumn(name = "SCHOOL_SEQNUM")
+	private School school;
+
+	@OneToOne(mappedBy = "user")
+	@PrimaryKeyJoinColumn
+	private AccessPermissions accessPermissions;
 
 }

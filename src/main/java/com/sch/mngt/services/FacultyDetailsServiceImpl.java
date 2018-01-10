@@ -20,22 +20,24 @@ public class FacultyDetailsServiceImpl implements FacultyDetailsService {
 	private FacultyRepository facultyRepository;
 
 	@Override
-	public void save(FacultyDetailsDTO facultyDetailsDTO) {
+	public Long save(FacultyDetailsDTO facultyDetailsDTO) {
 		System.out.println("save() - start");
 		try {
-
 			Faculty entity = new Faculty();
 			entity.setFacultyName(facultyDetailsDTO.getFacultyName());
 			entity.setContactNumer(facultyDetailsDTO.getContactNumer());
 			entity.setEmail(facultyDetailsDTO.getEmail());
 			Faculty savedFaculty = facultyRepository.save(entity);
 
+			if (null != savedFaculty) {
+				System.out.println("save() - end");
+				return savedFaculty.getId();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("save() - end");
-
+		
+		return null;
 	}
 
 	@Override

@@ -8,8 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -51,6 +52,10 @@ public class Student {
 	
 	@OneToMany(mappedBy="student")
 	private Set<MonthlyAttendance> monthlyAttendances = new HashSet<MonthlyAttendance>();
+	
+	@ManyToOne
+	@JoinColumn(name="CLASS_SEQNUM")
+	private com.sch.mngt.entity.Class classDetail;
 
 	/*@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn

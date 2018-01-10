@@ -37,13 +37,23 @@ public class School extends AbstractEntity {
 	private String schoolName;
 
 	@Column(name = "REG_NUMBER")
-	private String registratinNumber;
+	private String registrationNumber;
 
 	@Column(name = "ADDRESS")
 	private String adddress;
 	
-	@OneToMany(mappedBy="school")
+	/*@OneToMany(mappedBy="school")
 	private Set<SchoolAdmin> admins = new HashSet<SchoolAdmin>();
+*/	
+	@OneToMany(mappedBy="school")
+	private Set<User> users = new HashSet<User>();
+	
+	@OneToMany(mappedBy="school")
+	private Set<Class> classes = new HashSet<Class>();
+	
+	@OneToMany(mappedBy="school")
+	private Set<Faculty> faculties = new HashSet<Faculty>();
+	
 	
 
 }

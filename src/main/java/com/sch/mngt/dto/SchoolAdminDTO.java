@@ -1,7 +1,5 @@
 package com.sch.mngt.dto;
 
-import com.sch.mngt.entity.School;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

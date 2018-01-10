@@ -7,7 +7,7 @@ import com.sch.mngt.exception.RecordNotFoundException;
 
 public interface FacultyDetailsService {
 
-	void save(FacultyDetailsDTO facultyDetailsDTO);
+	Long save(FacultyDetailsDTO facultyDetailsDTO);
 
 	void update(FacultyDetailsDTO facultyDetailsDTO) throws RecordNotFoundException;
 

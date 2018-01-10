@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sch.mngt.dto.ClassDetailsDTO;
 import com.sch.mngt.dto.ErrorEntity;
 import com.sch.mngt.dto.Event;
 import com.sch.mngt.dto.Response;
@@ -95,7 +96,7 @@ public class SchoolAndAdminController extends BaseController {
 		return new ResponseEntity<Object>(event, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/v1/school-admin", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/v1/school-admin", method = RequestMethod.POST)
 	public HttpEntity<Object> createSchoolAdmin(@RequestBody @Valid SchoolAdminDTO schoolAdminDTO,
 			BindingResult result) {
 		System.out.println("createSchoolAdmin() - start");
@@ -124,6 +125,37 @@ public class SchoolAndAdminController extends BaseController {
 		response.setSchoolAdminDetail(schoolAdminDTO);
 		event.setResponse(response);
 		System.out.println("createSchoolAdmin() - end");
+		return new ResponseEntity<Object>(event, HttpStatus.OK);
+	}
+*/
+	@RequestMapping(value = "/v1/class-detail", method = RequestMethod.POST)
+	public HttpEntity<Object> createClass(@RequestBody @Valid ClassDetailsDTO classDetailsDTO, BindingResult result) {
+		System.out.println("createClass() - start");
+		System.out.println("classDetailsDTO  => " + classDetailsDTO);
+
+		if (result.hasErrors()) {
+			if (result.hasErrors()) {
+				ErrorEntity errorEntity = setValidationError(result);
+				return new ResponseEntity<Object>(errorEntity, HttpStatus.BAD_REQUEST);
+			}
+		}
+		Long id = null;
+		try {
+			id = schoolAndAdminService.createClass(classDetailsDTO);
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+			ErrorEntity errorEntity = setErrorEntity(e.getMessage(), "400", e);
+			return new ResponseEntity<Object>(errorEntity, HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			ErrorEntity errorEntity = setErrorEntity("This is unexpected case : " + e.getMessage(), "400", e);
+			return new ResponseEntity<Object>(errorEntity, HttpStatus.BAD_REQUEST);
+		}
+		Event event = new Event();
+		Response response = new Response();
+		classDetailsDTO.setId(id);
+		response.setClassDetail(classDetailsDTO);
+		event.setResponse(response);
+		System.out.println("createClass() - end");
 		return new ResponseEntity<Object>(event, HttpStatus.OK);
 	}
 

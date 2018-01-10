@@ -3,6 +3,7 @@ package com.sch.mngt.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -46,17 +49,21 @@ public class Class {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	/*
-	 * @OneToMany(mappedBy = "clazz") private Set<Student> students = new
-	 * HashSet<Student>();
-	 */
-
 	@ManyToOne
-	@JoinColumn(name = "FACULTY_DETAILS_SEQNUM")
-	private Faculty faculty;
+	@JoinColumn(name = "SCHOOL_SEQNUM")
+	private School school;
 
-	/*@ManyToOne
-	@JoinColumn(name = "FACULTY_DETAILS_SEQNUM")
-	private AttendanceSheet attendanceSheet;*/
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "CLASS_FACULTY_MAPPING",
+	joinColumns = {@JoinColumn(name = "CLASS_SEQNUM") }, 
+	inverseJoinColumns = { @JoinColumn(name = "FACULTY_SEQNUM") })
+	private Set<Faculty> faculties = new HashSet<Faculty>();
+	
+	@OneToMany(mappedBy="classDetail",cascade=CascadeType.ALL)
+	private Set<Student> students = new HashSet<Student>();
+	
+	@ManyToOne
+	@JoinColumn(name = "ACCESS_PERMISSION_SEQNUM")
+	private AccessPermissions accessPermissions;
 
 }
