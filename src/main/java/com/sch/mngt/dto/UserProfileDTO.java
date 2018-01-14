@@ -1,5 +1,10 @@
 package com.sch.mngt.dto;
 
+
+
+
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,29 +24,33 @@ public class UserProfileDTO {
 
 	private Long id;
 
-	@NotEmpty(message = "Username should not be empty or null")
+	@NotEmpty(message = "username should not be empty or null")
 	private String username;
 
-	@NotEmpty(message = "Password should not be empty or null")
+	@NotEmpty(message = "password should not be empty or null")
 	private String password;
 
-	@NotEmpty(message = "FirstName should not be empty or null")
+	@NotEmpty(message = "firstName should not be empty or null")
 	private String firstName;
 
-	@NotEmpty(message = "LastName should not be empty or null")
+	@NotEmpty(message = "lastName should not be empty or null")
 	private String lastName;
 
 	private String middleName;
 
-	@NotEmpty(message = "Email should not be empty or null")
+	@NotEmpty(message = "email should not be empty or null")
 	private String email;
 
 	private String contactNumber;
-
-	@NotEmpty(message = "SchoolRegNumber should not be empty or null")
-	private String schoolRegNumber;
-
-	@NotEmpty(message = "EmployeeId should not be empty or null")
-	private String employeeId;
+	
+	private String apiKey ;
+	
+	//@NotEmpty(message = "schoolId should not be empty or null")
+	@NotNull(message="schoolId should not be empty or null")
+	private Long schoolId;
+	
+	@NotEmpty(message = "roleName should not be empty or null")
+	private String roleName;
+	
 
 }

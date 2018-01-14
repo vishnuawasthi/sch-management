@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

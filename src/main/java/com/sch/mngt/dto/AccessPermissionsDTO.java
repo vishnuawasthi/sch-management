@@ -1,6 +1,6 @@
 package com.sch.mngt.dto;
 
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,18 +17,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class SchoolAdminDTO {
+public class AccessPermissionsDTO {
 
-	private Long id;
-	private String firstName;
-	private String lastName;
-	
-	private String middleName;
-	// private String username;
-	// private String password;
-	private String email;
-	private String contactNumber;
-	private Set<String> roleName;
-	private SchoolDTO schoolDetails;
-	private LiabilitiesDetailDTO liabilities;
+	private Long userId;
+
+	private Long accessFunId;
+
+	private List<Long> classes;
+
 }

@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +26,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+//@ToString()
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -42,7 +42,7 @@ public class Class {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "GRADE", unique = true, nullable = false)
+	@Column(name = "GRADE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private GradeType grade;
 
@@ -53,7 +53,7 @@ public class Class {
 	@JoinColumn(name = "SCHOOL_SEQNUM")
 	private School school;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinTable(name = "CLASS_FACULTY_MAPPING",
 	joinColumns = {@JoinColumn(name = "CLASS_SEQNUM") }, 
 	inverseJoinColumns = { @JoinColumn(name = "FACULTY_SEQNUM") })
@@ -62,8 +62,7 @@ public class Class {
 	@OneToMany(mappedBy="classDetail",cascade=CascadeType.ALL)
 	private Set<Student> students = new HashSet<Student>();
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ACCESS_PERMISSION_SEQNUM")
 	private AccessPermissions accessPermissions;
-
 }

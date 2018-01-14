@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sch.mngt.dto.Event;
 import com.sch.mngt.dto.FacultyDetailsDTO;
 import com.sch.mngt.dto.Response;
-import com.sch.mngt.dto.UserProfileDTO;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -27,7 +26,6 @@ public class FacultyController extends BaseController {
 		System.out.println("faculty  => " + facultyDetailsDTO);
 		Event event = new Event();
 		Response response = new Response();
-		response.setUserProfile(new UserProfileDTO(10L, "admin", "", "", "", "", "", "", "", ""));
 		event.setResponse(response);
 		System.out.println("saveFaculty() - end");
 		return new ResponseEntity<Object>(event, HttpStatus.OK);

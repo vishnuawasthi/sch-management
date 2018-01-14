@@ -3,12 +3,16 @@ package com.sch.mngt.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,7 +24,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -39,21 +43,22 @@ public class School extends AbstractEntity {
 	@Column(name = "REG_NUMBER")
 	private String registrationNumber;
 
-	@Column(name = "ADDRESS")
-	private String adddress;
-	
-	/*@OneToMany(mappedBy="school")
-	private Set<SchoolAdmin> admins = new HashSet<SchoolAdmin>();
-*/	
-	@OneToMany(mappedBy="school")
+	@OneToMany(mappedBy = "school",fetch=FetchType.LAZY)
 	private Set<User> users = new HashSet<User>();
-	
-	@OneToMany(mappedBy="school")
-	private Set<Class> classes = new HashSet<Class>();
-	
-	@OneToMany(mappedBy="school")
+
+	@OneToMany(mappedBy = "school",fetch=FetchType.LAZY)
+	private Set<com.sch.mngt.entity.Class> classes = new HashSet<com.sch.mngt.entity.Class>();
+
+	@OneToMany(mappedBy = "school",fetch=FetchType.LAZY)
 	private Set<Faculty> faculties = new HashSet<Faculty>();
+
+	@OneToMany(mappedBy = "school",fetch=FetchType.LAZY)
+	private Set<Student> students = new HashSet<Student>();
 	
-	
+	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+	private Set<UserRole> roles = new HashSet<UserRole>();
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
 
 }

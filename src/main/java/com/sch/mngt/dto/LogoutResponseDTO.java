@@ -13,11 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class ClassDetailsDTO {
-
-	private Long id;
-	private String grade;
-	private String description;
-	private Long schoolId;
-
+public  class LogoutResponseDTO {
+	private String message;
+	
 }

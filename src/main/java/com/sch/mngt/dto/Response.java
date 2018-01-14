@@ -32,5 +32,11 @@ public class Response {
 	
 	private ClassDetailsDTO classDetail;
 	
+	private LogoutResponseDTO logoutDetails;
+	
+	private StudentDetailsDTO studentDetail;
+	
+	private  UserRoleDTO userRole;
+	
 
 }

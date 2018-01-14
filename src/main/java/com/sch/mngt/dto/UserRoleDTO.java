@@ -1,5 +1,7 @@
 package com.sch.mngt.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -13,11 +15,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class ClassDetailsDTO {
+public class UserRoleDTO {
 
 	private Long id;
-	private String grade;
-	private String description;
-	private Long schoolId;
 
+	@NotEmpty(message="roleName should not be empty or null")
+	private String roleName;
+
+	private String description;
+	
+	@NotEmpty(message="schoolId should not be empty or null")
+	private Long schoolId;
 }

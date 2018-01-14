@@ -22,7 +22,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -34,9 +34,6 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_STUDENT_DETAILS")
 	@Column(name = "ID")
 	private Long id;
-
-	@Column(name = "ROLL_NUMBER", unique = true)
-	private String rollNumber;
 
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -50,14 +47,32 @@ public class Student {
 	@Column(name = "EMAIL")
 	private String email;
 	
+	@Column(name = "CONTACT_NUMBER")
+	private String contactNumber;
+	
+	@Column(name = "USER_NAME")
+	private String username;
+	
+	@Column(name = "PASSWORD")
+	private String password;
+	
+	/*@Column(name="GRADE")
+	@Enumerated
+	private GradeType grade;*/
+	
 	@OneToMany(mappedBy="student")
 	private Set<MonthlyAttendance> monthlyAttendances = new HashSet<MonthlyAttendance>();
 	
 	@ManyToOne
 	@JoinColumn(name="CLASS_SEQNUM")
 	private com.sch.mngt.entity.Class classDetail;
+	
+	@ManyToOne
+	@JoinColumn(name="SCHOOL_SEQNUM")
+	private School school ;
 
-	/*@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	/*
+	 * @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private AttendanceSheet attendanceSheet;*/
 

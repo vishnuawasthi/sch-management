@@ -44,6 +44,12 @@ public class UserRole {
 	@JoinColumn(name="USER_ID")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="SCHOOL_SEQNUM")
+	private School school;
+	
+	
+	
 	
 
 }

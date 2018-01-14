@@ -1,19 +1,18 @@
 package com.sch.mngt.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import com.sch.mngt.services.CustomUserDetailService;
-import com.sch.mngt.services.CustomUserDetails;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserValidationUtils {
 	
-	
+	public static String generateAccessKey() {
+		int length = 10;
+		boolean useLetters = true;
+		boolean useNumbers = false;
+		return RandomStringUtils.random(length, useLetters, useNumbers);
+	}
 
+	public static void main(String... strings) {
+		System.out.println(" generateAccessKey()  => " + generateAccessKey());
+	}
 
-	
 }

@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,11 +20,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -59,9 +57,6 @@ public class User extends AbstractEntity {
 	@Column(name = "CONTACT_NUMBER")
 	private String contactNumber;
 
-	@Column(name = "SCHOOL_NUMBER")
-	private String schoolRegNumber;
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserRole> roles = new HashSet<UserRole>();
 
@@ -69,8 +64,14 @@ public class User extends AbstractEntity {
 	@JoinColumn(name = "SCHOOL_SEQNUM")
 	private School school;
 
-	@OneToOne(mappedBy = "user")
+	/*@OneToOne(mappedBy = "user")
 	@PrimaryKeyJoinColumn
+	private AccessPermissions accessPermissions;*/
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	private AccessPermissions accessPermissions;
+	
+	@Column(name = "api_key")
+	private String apiKey ;
 
 }
