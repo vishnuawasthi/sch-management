@@ -18,9 +18,7 @@ import com.sch.mngt.dto.StudentDetailsDTO;
 @Component
 public class FileUploadHelper {
 	// https://www.journaldev.com/2562/apache-poi-tutorial
-
 	// https://www.mkyong.com/java/apache-poi-reading-and-writing-excel-file-in-java/
-	//
 
 	public List<StudentDetailsDTO> parseFile(MultipartFile multipartFile, List<StudentDetailsDTO> studentDetailsList) {
 		System.out.println("parseFile() - start");
@@ -45,7 +43,6 @@ public class FileUploadHelper {
 			if (rowIterator.hasNext()) {
 				rowIterator.next();
 			}
-
 			// Process the records
 			while (rowIterator.hasNext()) {
 				Row currentRow = rowIterator.next();
@@ -54,8 +51,13 @@ public class FileUploadHelper {
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
 					switch (cell.getCellType()) {
-					case Cell.CELL_TYPE_STRING: {
+					
+					case Cell.CELL_TYPE_NUMERIC: {
 						System.out.println(cell.getNumericCellValue());
+						break;
+					}
+					case Cell.CELL_TYPE_STRING: {
+						System.out.println(cell.getStringCellValue());
 						break;
 					}
 					case Cell.CELL_TYPE_FORMULA: {
