@@ -1,3 +1,4 @@
+
 package com.sch.mngt;
 
 import org.springframework.boot.CommandLineRunner;
